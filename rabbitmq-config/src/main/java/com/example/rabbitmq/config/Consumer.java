@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
  * @description: mq消费者
  */
 @Component
-@RabbitListener(queues = RabbitmqConfig.QUEUE_A)
 public class Consumer {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RabbitHandler
+//    @RabbitListener(queues = RabbitmqConfig.QUEUE_A)
+//    @RabbitHandler
     public void process(String content) {
         logger.info("接收处理队列A当中的消息:{}", content);
     }

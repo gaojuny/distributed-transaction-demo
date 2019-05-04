@@ -30,15 +30,8 @@ public class HelloController {
     public String sendMsg(String msg){
         List<TMqMessage> mqMessages = mqMessageDao.selectByExample(new TMqMessageExample());
         String json = gson.toJson(mqMessages);
-        producer.sendMsg(json);
+        boolean b = producer.sendMsgAsync(json);
+        System.out.println(b);
         return json;
-    }
-
-    @RequestMapping("user/")
-    public boolean saveUser(String msg){
-        List<TMqMessage> mqMessages = mqMessageDao.selectByExample(new TMqMessageExample());
-        String json = gson.toJson(mqMessages);
-        producer.sendMsg(json);
-        return true;
     }
 }
