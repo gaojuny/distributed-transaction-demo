@@ -1,6 +1,6 @@
 package com.example.distributed.transaction.service;
 
-import com.example.distributed.transaction.model.UserExample;
+import com.example.rabbitmq.config.User;
 
 /**
  * @author: gaojun
@@ -8,5 +8,5 @@ import com.example.distributed.transaction.model.UserExample;
  * @description:
  */
 public interface UserService {
-    void save(UserExample user);
+    void save(User user);
 }

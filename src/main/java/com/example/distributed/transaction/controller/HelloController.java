@@ -1,7 +1,7 @@
 package com.example.distributed.transaction.controller;
 
 import com.example.distributed.transaction.dao.TMqMessageDao;
-import com.example.distributed.transaction.model.TMqMessage;
+import com.example.rabbitmq.config.TMqMessage;
 import com.example.distributed.transaction.model.TMqMessageExample;
 import com.example.rabbitmq.config.Producer;
 import com.google.gson.Gson;

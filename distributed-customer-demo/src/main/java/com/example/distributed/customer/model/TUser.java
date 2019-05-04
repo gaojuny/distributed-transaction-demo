@@ -1,14 +1,20 @@
-package com.example.distributed.transaction.model;
+package com.example.distributed.customer.model;
 
 import java.io.Serializable;
 
 /**
- * user
+ * t_user
  * @author 
  */
-public class User implements Serializable {
+public class TUser implements Serializable {
+    /**
+     * 主键
+     */
     private Long id;
 
+    /**
+     * 姓名
+     */
     private String name;
 
     private static final long serialVersionUID = 1L;
@@ -40,7 +46,7 @@ public class User implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        User other = (User) that;
+        TUser other = (TUser) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
     }

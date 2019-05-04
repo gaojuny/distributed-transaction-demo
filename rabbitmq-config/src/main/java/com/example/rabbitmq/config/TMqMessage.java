@@ -1,4 +1,4 @@
-package com.example.distributed.transaction.model;
+package com.example.rabbitmq.config;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.distributed.transaction.dao.TMqMessageDao">
-  <resultMap id="BaseResultMap" type="com.example.distributed.transaction.model.TMqMessage">
+  <resultMap id="BaseResultMap" type="com.example.rabbitmq.config.TMqMessage">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="biz_id" jdbcType="BIGINT" property="bizId" />
     <result column="biz_type" jdbcType="TINYINT" property="bizType" />
@@ -10,7 +10,7 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="try_count" jdbcType="INTEGER" property="tryCount" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.distributed.transaction.model.TMqMessage">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.rabbitmq.config.TMqMessage">
     <result column="msg" jdbcType="LONGVARCHAR" property="msg" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -141,7 +141,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.distributed.transaction.model.TMqMessage" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.rabbitmq.config.TMqMessage" useGeneratedKeys="true">
     insert into t_mq_message (biz_id, biz_type, msg_result, 
       msg_desc, create_time, try_count, 
       msg)
@@ -149,7 +149,7 @@
       #{msgDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{tryCount,jdbcType=INTEGER}, 
       #{msg,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.distributed.transaction.model.TMqMessage" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.rabbitmq.config.TMqMessage" useGeneratedKeys="true">
     insert into t_mq_message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="bizId != null">
@@ -263,7 +263,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.distributed.transaction.model.TMqMessage">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.rabbitmq.config.TMqMessage">
     update t_mq_message
     <set>
       <if test="bizId != null">
@@ -290,7 +290,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.distributed.transaction.model.TMqMessage">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.rabbitmq.config.TMqMessage">
     update t_mq_message
     set biz_id = #{bizId,jdbcType=BIGINT},
       biz_type = #{bizType,jdbcType=TINYINT},
@@ -301,7 +301,7 @@
       msg = #{msg,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.distributed.transaction.model.TMqMessage">
+  <update id="updateByPrimaryKey" parameterType="com.example.rabbitmq.config.TMqMessage">
     update t_mq_message
     set biz_id = #{bizId,jdbcType=BIGINT},
       biz_type = #{bizType,jdbcType=TINYINT},

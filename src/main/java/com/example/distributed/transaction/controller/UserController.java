@@ -20,6 +20,7 @@ public class UserController {
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public boolean saveUser(UserExample user){
+        userService.save(user);
         return true;
     }
 }

@@ -1,6 +1,6 @@
 package com.example.distributed.transaction.dao;
 
-import com.example.distributed.transaction.model.User;
+import com.example.rabbitmq.config.User;
 import com.example.distributed.transaction.model.UserExample;
 import java.util.List;
 

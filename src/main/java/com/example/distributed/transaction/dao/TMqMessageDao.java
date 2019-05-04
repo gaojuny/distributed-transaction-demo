@@ -1,6 +1,6 @@
 package com.example.distributed.transaction.dao;
 
-import com.example.distributed.transaction.model.TMqMessage;
+import com.example.rabbitmq.config.TMqMessage;
 import com.example.distributed.transaction.model.TMqMessageExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

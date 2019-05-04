@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.distributed.transaction.dao.UserDao">
-  <resultMap id="BaseResultMap" type="com.example.rabbitmq.config.User">
+<mapper namespace="com.example.distributed.customer.dao.TUserDao">
+  <resultMap id="BaseResultMap" type="com.example.distributed.customer.model.TUser">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
@@ -66,13 +66,13 @@
   <sql id="Base_Column_List">
     id, `name`
   </sql>
-  <select id="selectByExample" parameterType="com.example.distributed.transaction.model.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.example.distributed.customer.model.TUserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from user
+    from t_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,44 +91,50 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from t_user
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from user
+    delete from t_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.distributed.transaction.model.UserExample">
-    delete from user
+  <delete id="deleteByExample" parameterType="com.example.distributed.customer.model.TUserExample">
+    delete from t_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.rabbitmq.config.User" useGeneratedKeys="true">
-    insert into user (`name`)
-    values (#{name,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.example.distributed.customer.model.TUser">
+    insert into t_user (id, `name`)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.rabbitmq.config.User" useGeneratedKeys="true">
-    insert into user
+  <insert id="insertSelective" parameterType="com.example.distributed.customer.model.TUser">
+    insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="name != null">
         `name`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.distributed.transaction.model.UserExample" resultType="java.lang.Long">
-    select count(*) from user
+  <select id="countByExample" parameterType="com.example.distributed.customer.model.TUserExample" resultType="java.lang.Long">
+    select count(*) from t_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update user
+    update t_user
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -142,15 +148,15 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update user
+    update t_user
     set id = #{record.id,jdbcType=BIGINT},
       `name` = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.rabbitmq.config.User">
-    update user
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.distributed.customer.model.TUser">
+    update t_user
     <set>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
@@ -158,8 +164,8 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.rabbitmq.config.User">
-    update user
+  <update id="updateByPrimaryKey" parameterType="com.example.distributed.customer.model.TUser">
+    update t_user
     set `name` = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
